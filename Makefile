@@ -8,7 +8,7 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_memcpy.c ft_toupper.c \
 		ft_tolower.c ft_memmove.c \
 		ft_memchr.c ft_memcmp.c \
-		ft_strchr.c
+		ft_strchr.c ft_strrchr.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 TEST_SRCS = tests/main.c \
 			tests/test_ft_strlen.c \
@@ -19,7 +19,8 @@ TEST_SRCS = tests/main.c \
 			tests/test_ft_memmove.c \
 			tests/test_ft_memchr.c \
 			tests/test_ft_memcmp.c \
-			tests/test_ft_strchr.c
+			tests/test_ft_strchr.c \
+			tests/test_ft_strrchr.c
 TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
 
 all: $(NAME)
