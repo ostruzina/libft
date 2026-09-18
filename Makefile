@@ -6,14 +6,15 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_isalnum.c ft_isprint.c \
 		ft_isascii.c ft_bzero.c \
 		ft_memcpy.c ft_toupper.c \
-		ft_tolower.c
+		ft_tolower.c ft_memmove.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 TEST_SRCS = tests/main.c \
 			tests/test_ft_strlen.c \
 			tests/test_ft_memset.c \
 			tests/test_ft_is.c \
 			tests/test_ft_bzero.c \
-			tests/test_ft_memcpy.c
+			tests/test_ft_memcpy.c \
+			tests/test_ft_memmove.c
 TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
 
 all: $(NAME)
