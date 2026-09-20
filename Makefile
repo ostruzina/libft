@@ -14,7 +14,8 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_memchr.c ft_memcmp.c \
 		ft_strchr.c ft_strrchr.c \
 		ft_strlcpy.c ft_strlcat.c \
-		ft_strncmp.c ft_strnstr.c
+		ft_strncmp.c ft_strnstr.c \
+		ft_atoi.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 
 all: $(NAME)
@@ -60,7 +61,8 @@ TEST_SRCS = tests/main.c \
 			tests/test_ft_strlcat.c \
 			tests/test_ft_strncmp.c \
 			tests/reference_strnstr.c \
-			tests/test_ft_strnstr.c
+			tests/test_ft_strnstr.c \
+			tests/test_ft_atoi.c
 TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
 
 %.asan.o: %.c libft.h
