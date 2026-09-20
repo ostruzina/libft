@@ -1,3 +1,7 @@
+# ============================================================
+# CORE -- required for submission. Nothing here depends on
+# anything in the TESTS section below.
+# ============================================================
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -12,6 +16,33 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_strlcpy.c ft_strlcat.c \
 		ft_strncmp.c ft_strnstr.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	ar rcs $@ $^
+
+%.o: %.c libft.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean::
+	/bin/rm -f *.o
+
+fclean: clean
+	/bin/rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
+
+# ============================================================
+# TESTS -- local development only, not needed for submission.
+# Safe to delete everything from here to the end of the file:
+# nothing in the CORE section above depends on anything below.
+# (Uses ASan to improve robustness of tests.)
+# ============================================================
+ASAN_FLAGS = -fsanitize=address -g
+ASAN_OBJS = $(patsubst %.c,%.asan.o,$(SRCS))
 TEST_SRCS = tests/main.c \
 			tests/test_ft_strlen.c \
 			tests/test_ft_memset.c \
@@ -32,30 +63,20 @@ TEST_SRCS = tests/main.c \
 			tests/test_ft_strnstr.c
 TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
 
-all: $(NAME)
+%.asan.o: %.c libft.h
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	ar rcs $@ $^
+tests/%.o: tests/%.c libft.h tests/tests.h
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) -I. -c $< -o $@
 
-%.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-tests/%.o: tests/%.c libft.h tests.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	/bin/rm -f *.o
-	/bin/rm -f tests/*.o tests/test_runner
-
-fclean: clean
-	/bin/rm -f $(NAME)
-
-re: fclean all
-
-test: $(TEST_OBJS) $(NAME)
-	$(CC) $(CFLAGS) $^ -o tests/test_runner
+test: $(TEST_OBJS) $(ASAN_OBJS)
+	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(TEST_OBJS) $(ASAN_OBJS) -o tests/test_runner
 
 check: test
 	./tests/test_runner
 
-.PHONY: all clean fclean re test check
+clean::
+	/bin/rm -f *.asan.o
+	/bin/rm -f tests/*.o tests/test_runner
+
+.PHONY: test check
