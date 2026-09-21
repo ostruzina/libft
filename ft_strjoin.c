@@ -6,18 +6,18 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 18:09:38 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/21 18:41:25 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/09/21 21:40:29 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*joined; 
+	char	*joined;
 	size_t	s1len;
 	size_t	s2len;
-	
+
 	if (!s1 || !s2)
 		return (NULL);
 	s1len = ft_strlen(s1);
