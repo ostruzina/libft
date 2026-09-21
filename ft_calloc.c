@@ -6,7 +6,7 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 23:00:53 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/21 15:10:11 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/09/21 18:06:17 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	
+
 	if (nmemb != 0 && size > SIZE_MAX / nmemb)
 		return (NULL);
 	if (nmemb == 0 || size == 0)

@@ -6,13 +6,13 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 22:08:07 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/20 22:40:33 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/09/21 18:05:58 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	int		i;
 	int		sign;
