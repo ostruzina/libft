@@ -20,7 +20,7 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_strjoin.c ft_putchar_fd.c \
 		ft_putnbr_fd.c ft_putendl_fd.c \
 		ft_putstr_fd.c ft_strmapi.c \
-		ft_striteri.c
+		ft_striteri.c ft_strtrim.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 
 all: $(NAME)
@@ -73,7 +73,8 @@ TEST_SRCS = tests/main.c \
 			tests/test_ft_substr.c \
 			tests/test_ft_strjoin.c \
 			tests/test_ft_put_fd.c \
-			tests/test_ft_strm_iter.c
+			tests/test_ft_strm_iter.c \
+			tests/test_ft_strtrim.c
 TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
 
 %.asan.o: %.c libft.h
