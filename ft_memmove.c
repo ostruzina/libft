@@ -6,7 +6,7 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 15:33:01 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/18 18:46:54 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/09/22 18:10:09 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	udest = (unsigned char *)dest;
 	usrc = (const unsigned char *)src;
-	if (udest < usrc)
+	if ((uintptr_t)udest < (uintptr_t)usrc)
 	{
 		i = 0;
 		while (i < n)
