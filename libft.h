@@ -6,6 +6,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 int		ft_isalpha(int c);
@@ -40,5 +46,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
+t_list *ft_lstnew(void *content);
 
 #endif

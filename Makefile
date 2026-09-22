@@ -21,7 +21,8 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_putnbr_fd.c ft_putendl_fd.c \
 		ft_putstr_fd.c ft_strmapi.c \
 		ft_striteri.c ft_strtrim.c \
-		ft_split.c ft_itoa.c
+		ft_split.c ft_itoa.c \
+		ft_lstnew.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 
 all: $(NAME)
@@ -77,7 +78,8 @@ TEST_SRCS = tests/main.c \
 			tests/test_ft_strm_iter.c \
 			tests/test_ft_strtrim.c \
 			tests/test_ft_split.c \
-			tests/test_ft_itoa.c
+			tests/test_ft_itoa.c \
+			tests/test_ft_lstnew.c
 TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
 
 %.asan.o: %.c libft.h
