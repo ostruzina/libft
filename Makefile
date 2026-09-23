@@ -23,21 +23,25 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_striteri.c ft_strtrim.c \
 		ft_split.c ft_itoa.c \
 		ft_lstnew.c
-OBJS = $(patsubst %.c,%.o,$(SRCS))
+OBJ_DIR	= obj
+OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $@ $^
 
-%.o: %.c libft.h
+$(OBJ_DIR)/%.o: %.c libft.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
 clean::
-	/bin/rm -f *.o
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
@@ -50,43 +54,48 @@ re: fclean all
 # (Uses ASan to improve robustness of tests.)
 # ============================================================
 ASAN_FLAGS = -fsanitize=address -g
-ASAN_OBJS = $(patsubst %.c,%.asan.o,$(SRCS))
-TEST_SRCS = tests/main.c \
-			tests/test_ft_strlen.c \
-			tests/test_ft_memset.c \
-			tests/test_ft_is.c \
-			tests/test_ft_bzero.c \
-			tests/test_ft_memcpy.c \
-			tests/test_ft_memmove.c \
-			tests/test_ft_memchr.c \
-			tests/test_ft_memcmp.c \
-			tests/test_ft_strchr.c \
-			tests/test_ft_strrchr.c \
-			tests/reference_strlcpy.c \
-			tests/test_ft_strlcpy.c \
-			tests/reference_strlcat.c \
-			tests/test_ft_strlcat.c \
-			tests/test_ft_strncmp.c \
-			tests/reference_strnstr.c \
-			tests/test_ft_strnstr.c \
-			tests/test_ft_atoi.c \
-			tests/test_ft_calloc.c \
-			tests/test_ft_strdup.c \
-			tests/test_ft_substr.c \
-			tests/test_ft_strjoin.c \
-			tests/test_ft_put_fd.c \
-			tests/test_ft_strm_iter.c \
-			tests/test_ft_strtrim.c \
-			tests/test_ft_split.c \
-			tests/test_ft_itoa.c \
-			tests/test_ft_lstnew.c
-TEST_OBJS = $(patsubst %.c,%.o,$(TEST_SRCS))
+ASAN_OBJS = $(patsubst %.c,$(OBJ_DIR)/%.asan.o,$(SRCS))
+TEST_DIR = tests
+TEST_OBJ_DIR = $(TEST_DIR)/obj
+TEST_SRCS = $(TEST_DIR)/main.c \
+			$(TEST_DIR)/test_ft_strlen.c \
+			$(TEST_DIR)/test_ft_memset.c \
+			$(TEST_DIR)/test_ft_is.c \
+			$(TEST_DIR)/test_ft_bzero.c \
+			$(TEST_DIR)/test_ft_memcpy.c \
+			$(TEST_DIR)/test_ft_memmove.c \
+			$(TEST_DIR)/test_ft_memchr.c \
+			$(TEST_DIR)/test_ft_memcmp.c \
+			$(TEST_DIR)/test_ft_strchr.c \
+			$(TEST_DIR)/test_ft_strrchr.c \
+			$(TEST_DIR)/reference_strlcpy.c \
+			$(TEST_DIR)/test_ft_strlcpy.c \
+			$(TEST_DIR)/reference_strlcat.c \
+			$(TEST_DIR)/test_ft_strlcat.c \
+			$(TEST_DIR)/test_ft_strncmp.c \
+			$(TEST_DIR)/reference_strnstr.c \
+			$(TEST_DIR)/test_ft_strnstr.c \
+			$(TEST_DIR)/test_ft_atoi.c \
+			$(TEST_DIR)/test_ft_calloc.c \
+			$(TEST_DIR)/test_ft_strdup.c \
+			$(TEST_DIR)/test_ft_substr.c \
+			$(TEST_DIR)/test_ft_strjoin.c \
+			$(TEST_DIR)/test_ft_put_fd.c \
+			$(TEST_DIR)/test_ft_strm_iter.c \
+			$(TEST_DIR)/test_ft_strtrim.c \
+			$(TEST_DIR)/test_ft_split.c \
+			$(TEST_DIR)/test_ft_itoa.c \
+			$(TEST_DIR)/test_ft_lstnew.c
+TEST_OBJS = $(patsubst $(TEST_DIR)/%.c,$(TEST_OBJ_DIR)/%.o,$(TEST_SRCS))
 
-%.asan.o: %.c libft.h
+$(OBJ_DIR)/%.asan.o: %.c libft.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) -c $< -o $@
 
-tests/%.o: tests/%.c libft.h tests/tests.h
+$(TEST_OBJ_DIR)/%.o: $(TEST_DIR)/%.c libft.h $(TEST_DIR)/tests.h | $(TEST_OBJ_DIR)
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) -I. -c $< -o $@
+
+$(TEST_OBJ_DIR):
+	mkdir -p $(TEST_OBJ_DIR)
 
 test: $(TEST_OBJS) $(ASAN_OBJS)
 	$(CC) $(CFLAGS) $(ASAN_FLAGS) $(TEST_OBJS) $(ASAN_OBJS) -o tests/test_runner
@@ -95,7 +104,7 @@ check: test
 	./tests/test_runner
 
 clean::
-	/bin/rm -f *.asan.o
-	/bin/rm -f tests/*.o tests/test_runner
+	rm -rf $(TEST_OBJ_DIR)
+	rm -f $(TEST_DIR)/test_runner
 
 .PHONY: test check
