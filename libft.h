@@ -46,6 +46,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
-t_list *ft_lstnew(void *content);
+t_list	*ft_lstnew(void *content);
 
 #endif

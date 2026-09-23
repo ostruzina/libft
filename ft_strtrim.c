@@ -6,7 +6,7 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 21:44:32 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/21 22:36:03 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/09/23 15:40:20 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;
-	
+
 	if (!s1 || !set)
 		return (NULL);
 	start = 0;
