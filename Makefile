@@ -24,7 +24,9 @@ SRCS = ft_strlen.c ft_memset.c \
 		ft_split.c ft_itoa.c \
 		ft_lstnew.c ft_lstadd_front.c \
 		ft_lstlast.c ft_lstadd_back.c \
-		ft_lstsize.c
+		ft_lstsize.c ft_lstclear.c \
+		ft_lstdelone.c ft_lstiter.c \
+		ft_lstmap.c
 OBJ_DIR	= obj
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 
@@ -89,7 +91,8 @@ TEST_SRCS = $(TEST_DIR)/main.c \
 			$(TEST_DIR)/test_ft_itoa.c \
 			$(TEST_DIR)/test_ft_lstnew.c \
 			$(TEST_DIR)/test_ft_lstadd_front.c \
-			$(TEST_DIR)/test_ft_lst_group2.c
+			$(TEST_DIR)/test_ft_lst_group2.c \
+			$(TEST_DIR)/test_ft_lst_group3.c
 TEST_OBJS = $(patsubst $(TEST_DIR)/%.c,$(TEST_OBJ_DIR)/%.o,$(TEST_SRCS))
 
 $(OBJ_DIR)/%.asan.o: %.c libft.h | $(OBJ_DIR)
