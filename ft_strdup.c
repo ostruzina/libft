@@ -6,7 +6,7 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 23:00:59 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/21 15:34:06 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/10/05 20:14:39 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *s)
 	size_t	slen;
 	char	*dup;
 
+	if (!s)
+		return (NULL);
 	slen = ft_strlen(s);
 	dup = malloc(sizeof(char) * (slen + 1));
 	if (!dup)
