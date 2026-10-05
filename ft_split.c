@@ -6,7 +6,7 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 18:35:37 by verosvec          #+#    #+#             */
-/*   Updated: 2026/10/05 18:44:56 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/10/05 19:09:15 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static char	**fill_split(char **arr, char const *s, char c)
 			i++;
 		}
 	}
-	arr[i] = NULL;
 	return (arr);
 }
 
@@ -85,6 +84,8 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	words = count_words(s, c);
 	arr = malloc(sizeof(char *) * (words + 1));
+	if (!arr)
+		return (NULL);
 	if (!fill_split(arr, s, c))
 		return (NULL);
 	arr[words] = NULL;
