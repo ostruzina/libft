@@ -6,7 +6,7 @@
 /*   By: verosvec <verosvec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 18:35:37 by verosvec          #+#    #+#             */
-/*   Updated: 2026/09/22 20:32:50 by verosvec         ###   ########.fr       */
+/*   Updated: 2026/10/05 18:44:56 by verosvec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ static char	**fill_split(char **arr, char const *s, char c)
 		{
 			arr[i] = ft_substr(s, start, end - start);
 			if (!arr[i])
-				return (free_split(arr, i), NULL);
+			{
+				free_split(arr, i);
+				return (NULL);
+			}
 			i++;
 		}
 	}
@@ -76,11 +79,14 @@ static char	**fill_split(char **arr, char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
+	size_t	words;
 
 	if (!s)
 		return (NULL);
-	arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
-	if (!arr)
+	words = count_words(s, c);
+	arr = malloc(sizeof(char *) * (words + 1));
+	if (!fill_split(arr, s, c))
 		return (NULL);
-	return (fill_split(arr, s, c));
+	arr[words] = NULL;
+	return (arr);
 }
