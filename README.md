@@ -38,10 +38,10 @@ Any differences or specificities in behaviour are described in the Notes below.
 * **Character Checks & Conversion:** `ft_isalpha`, `ft_isdigit`, `ft_isalnum`, `ft_isascii`, `ft_isprint`, `ft_toupper`, `ft_tolower`, `ft_atoi`
 
 Notes:
-- Some of the original functions use the `restrict` qualifier in their prototype. The `libft` implementations do not use it, as it is part of C99 standard.
+- Some of the original functions use the `restrict` qualifier in their prototype. The `libft` implementations do not use it, as the subject forbids it as a C99 keyword.
 - The character classification functions (`isalpha`, `isdigit`, `isalnum`, `isascii`, `isprint`) differ from the original functions in that they return **1** if the character matches the tested class and **0** if the character does not match.
 - `ft_calloc` follows this rule: If `nmemb` or `size` is `0`, then `ft_calloc()` returns a unique pointer value that can be successfully passed to `free()`.
-- `ft_strlcpy`, `ft_strlcat` and `ft_bzero` are re-implemented from BSD libc original functions that are not included by default in the GNU C Library (glibc).
+- `ft_strlcpy`, `ft_strlcat` and `ft_bzero` are re-implemented from BSD libc original functions.
 
 ### Part 2 - Additional Functions
 Utility functions for enhanced string formatting and dynamic memory allocation. Please refer to `libft.h` for their signatures.
@@ -56,9 +56,9 @@ Utility functions for enhanced string formatting and dynamic memory allocation. 
 
 * **Parsing & Conversion:**
 
-`ft_split` - allocates memory (using `malloc(3)`) and returns an array of strings obtained by splitting `s` using the character `c` as a delimiter. Each string in the returned array is allocated independently. The array of pointers itself is also allocated dynamically. The returned array must be `NULL` terminated.
+`ft_split` - allocates memory (using `malloc(3)`) and returns an array of strings obtained by splitting `s` using the character `c` as a delimiter. Each string in the returned array is allocated independently. The array of pointers itself is also allocated dynamically. The returned array is `NULL`-terminated.
 
-`ft_itoa` - allocates memory (using `malloc(3)`) and returns a string representing the integer received as an argument. Negative numbers must be handled.
+`ft_itoa` - allocates memory (using `malloc(3)`) and returns a string representing the integer received as an argument. Negative numbers are handled.
 
 * **Functional String Mapping:**
 
@@ -137,9 +137,9 @@ Include the header in your C code and link the static library during compilation
 ```c
 #include "libft.h"
 
-int	main()
+int	main(void)
 {
-	ft_putstr_fd("Hello world!", 1);
+	ft_putendl_fd("Hello world!", 1);
 	return (0);
 }
 ```
@@ -161,7 +161,7 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lft -o my_program
 * https://github.com/42School/norminette
 * https://valgrind.org/
 * GCC AddressSanitizer Documentation (`-fsanitize=address`)
-* https://github.com/Tripouille/libftTester (Unit Testing Framework)
+* https://github.com/Tripouille/libftTester
 * Friends' and peers' help and tips
 
 The functions, the header file, the Makefile and this README have been written and developed by myself.
